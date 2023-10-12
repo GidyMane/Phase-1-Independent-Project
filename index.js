@@ -30,5 +30,23 @@ let section = document.querySelector("section"),
 
   }, 1000); // 1000 milliseconds = 1s
 
+// Adding Javascript to the weather part
+
+// Adding the API KEY
+
+const apiKey= "629086e226d63aee40ec6832ea841fcb";
+const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=Nairobi";
+
+// adding asynchronous function
+
+async function checkWeather(){
+  const response= await fetch(apiUrl + `&appid=${apiKey}`);
+  let data =await response.json();
+
+  console.log(data);
+
+}
+checkWeather()
+
 
   
