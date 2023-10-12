@@ -48,6 +48,15 @@ const weatherIcon = document.querySelector(".weather-icon");
 
 async function checkWeather(city){
   const response= await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+  // To handle error incase of invalid city input
+
+  if(response.status == 404){
+     document.querySelector(".error").style.display = "block";
+     document.querySelector(".weather").style.display = "none";
+  }
+  else{
+
   let data =await response.json();
 
     // Fetching each individual element to be updated by the weather from the API
@@ -75,6 +84,8 @@ else if(data.weather[0].main =="Mist"){
 }
 // Allow weather to only be displayed after you search it
 document.querySelector(".weather").style.display = "block";
+document.querySelector(".error").style.display = "none";
+}
 }
 // Adding EventListener to the search button
 searchBtn.addEventListener("click", ()=>{
