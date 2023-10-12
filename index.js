@@ -35,12 +35,19 @@ let section = document.querySelector("section"),
 // Adding the API KEY
 
 const apiKey= "629086e226d63aee40ec6832ea841fcb";
-const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=Nairobi";
+const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+// ADDING FUNCTIONALITY TO THE SEARCHBOX
+
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+// fetching the weather Icons
+const weatherIcon = document.querySelector(".weather-icon");
 
 // adding asynchronous function
 
-async function checkWeather(){
-  const response= await fetch(apiUrl + `&appid=${apiKey}`);
+async function checkWeather(city){
+  const response= await fetch(apiUrl + city + `&appid=${apiKey}`);
   let data =await response.json();
 
   console.log(data);
@@ -50,8 +57,32 @@ async function checkWeather(){
   document.querySelector(".temp").innerHTML = Math.ceil(data.main.temp) + "°C"; // updates the temperature and convert the degrees into whole numbers using the math function 
   document.querySelector(".humidity").innerHTML = data.main.humidity + "%";// update humidity
   document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";// update wind speed
+
+// Updating each weather Icon to display according to the weather condition
+
+if(data.weather[0].main =="Clouds"){
+        weatherIcon.src ="images/clouds.png";
 }
-checkWeather();
+else if(data.weather[0].main =="Clear"){
+  weatherIcon.src ="images/clear.png";
+}
+else if(data.weather[0].main =="Rain"){
+  weatherIcon.src ="images/rain.png";
+}
+else if(data.weather[0].main =="Drizzle"){
+  weatherIcon.src ="images/drizzle.png";
+}
+else if(data.weather[0].main =="Mist"){
+  weatherIcon.src ="images/mist.png";
+}
+}
+// Adding EventListener to the search button
+searchBtn.addEventListener("click", ()=>{
+  checkWeather(searchBox.value);
+})
+
+
+
 
 
   
