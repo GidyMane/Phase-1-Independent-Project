@@ -1,5 +1,3 @@
-
-
 // Adding Javascript to the weather part
 
 // Adding the API KEY
