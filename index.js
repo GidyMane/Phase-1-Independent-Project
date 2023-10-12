@@ -45,8 +45,13 @@ async function checkWeather(){
 
   console.log(data);
 
+  // Fetching each individual element to be updated by the weather from the API
+  document.querySelector(".city").innerHTML = data.name;// update the city name
+  document.querySelector(".temp").innerHTML = data.main.temp + "°C"; // updates the temperature
+  document.querySelector(".humidity").innerHTML = data.main.humidity + "%";// update humidity
+  document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";// update wind speed
 }
-checkWeather()
+checkWeather();
 
 
   
