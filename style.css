@@ -191,3 +191,7 @@
     font-size: 28px;
     margin-top: -6 px;
   }
+  /* Hide default weather content to only display after you search city  */
+  .weather{
+    display: none;
+  }
