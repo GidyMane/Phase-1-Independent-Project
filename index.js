@@ -50,9 +50,7 @@ async function checkWeather(city){
   const response= await fetch(apiUrl + city + `&appid=${apiKey}`);
   let data =await response.json();
 
-  console.log(data);
-
-  // Fetching each individual element to be updated by the weather from the API
+    // Fetching each individual element to be updated by the weather from the API
   document.querySelector(".city").innerHTML = data.name;// update the city name
   document.querySelector(".temp").innerHTML = Math.ceil(data.main.temp) + "°C"; // updates the temperature and convert the degrees into whole numbers using the math function 
   document.querySelector(".humidity").innerHTML = data.main.humidity + "%";// update humidity
@@ -75,6 +73,8 @@ else if(data.weather[0].main =="Drizzle"){
 else if(data.weather[0].main =="Mist"){
   weatherIcon.src ="images/mist.png";
 }
+// Allow weather to only be displayed after you search it
+document.querySelector(".weather").style.display = "block";
 }
 // Adding EventListener to the search button
 searchBtn.addEventListener("click", ()=>{
